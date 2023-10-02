@@ -1,0 +1,165 @@
+/* The container */
+.container--Result {
+  max-width: 1160px;
+  margin: 0 auto;
+} 
+.box--Result {
+  padding: 20px 30px;
+}
+.Result {
+  &__anwser {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    & > input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+    &--checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: #eee;
+      border-radius: 50%;
+      &::after {
+        content: "";
+        position: absolute;
+        display: none;
+        top: 7px;
+        left: 7px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: white;
+      }
+    }
+    &:hover input ~ &--checkmark {
+      background-color: #ccc;
+    }
+    & input:checked ~ &--checkmark {
+      background-color: red;
+      &--correct {
+        background-color: rgb(144, 232, 144)!important;
+      }
+      &::after {
+        display: block;
+      }
+    }
+  }
+  &__item {
+    &--selected {
+      color: red;
+    }
+    &--correct {
+      color: rgb(43, 211, 43);
+    }
+    &--question {
+      display: flex;
+      align-items: center;
+    } 
+    &--tag {
+      display: inline-flex;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      padding: 5px 10px;
+      margin-left: 20px;
+      border-radius: 20px;
+      &-false {
+        background: red;
+      }
+      &-true {
+        background: rgb(141, 239, 141);
+      }
+    }
+  }
+}
+.title {
+  &--correct {
+    color: green;
+  }
+  &--wrong {
+    color: red;
+  }
+  &--percent {
+    color: rgb(227, 192, 127);
+  }
+}
+.number {
+  display: inline-block;
+  padding: 0 10px;
+  margin: 0 4px;
+  border-radius: 5px;
+  &--correct {
+    background-color: rgb(141, 239, 141);
+  }
+  &--wrong {
+    background-color: red;
+  }
+  &--percent {
+    background-color: rgb(227, 192, 127);
+  }
+}
+// .button {
+//   padding: 5px 20px;
+//   font-size: 20px;
+//   cursor: pointer;
+//   background: red;
+//   border: none;
+//   border-radius: 10px;
+//   transition: 0.5s;
+//   &:hover {
+//     background: rgb(141, 239, 141);
+//     box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(228, 2, 44, 0.5), .125rem .125rem 1rem rgba(90, 215, 88, 0.5);
+//     transform: translateY(-10px);
+//   }
+// }
+.link--desc{
+  text-decoration: none;
+}
+.button-37 {
+  background-color: #13aa52;
+  border: 1px solid #13aa52;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  width: 150px;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  margin-top: 20px;
+  margin-right: 20px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  &-ll {
+    background-color: orangered;
+  }
+}
+
+.button-37:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-5px);
+}
+
+@media (min-width: 768px) {
+  .button-37 {
+    padding: 10px 30px;
+  }
+}
