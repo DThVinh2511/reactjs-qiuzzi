@@ -18,15 +18,15 @@ const Topic = () => {
         <table className="table">
           <thead>
             <tr>
-              <th className="table_id">id</th>
+              <th className="table_id">STT</th>
               <th className="table_title">Tên chủ đề</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {topics.map(item => (
+            {topics.map((item, index) => (
               <tr key={item.id}>
-                <td className="table_id">{item._id}</td>
+                <td className="table_id">{index + 1}</td>
                 <td className="table_name">{item.name}</td>
                 <td className="table_link">
                   <Link to={"/qiuz/"+ item._id}>

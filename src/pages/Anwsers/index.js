@@ -29,15 +29,15 @@ const Anwsers = () => {
         <table className="table">
           <thead>
             <tr>
-              <th className="table_id">id</th>
+              <th className="table_id">STT</th>
               <th className="table_title">Tên chủ đề</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {anwser.map(item => (
+            {anwser.map((item, index) => (
               <tr key={item._id}>
-                <td className="table_id">{item._id}</td>
+                <td className="table_id">{anwser.length - index}</td>
                 <td className="table_name">{item.name}</td>
                 <td className="table_link">
                   <Link to={"/result/"+ item._id}>
