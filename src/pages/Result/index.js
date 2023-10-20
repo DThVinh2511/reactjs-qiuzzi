@@ -14,16 +14,13 @@ const Result = () => {
       const dataAns = await getAnwsers(prams.id);
       const dataQuestion = await getQuestion(dataAns[0].topicId);
       setDataAns(dataAns[0]);
-      console.log("check data Question",dataQuestion);
-      console.log("check dataAns", dataAns);
       let Result = [];
       for(let i = 0; i < dataQuestion.length; i++) {
         Result.push({
           ...dataQuestion[i],
           ...dataAns[0].answers.find(item => item.questionId === dataQuestion[i]._id)
         })
-      }
-      console.log(Result);
+      };
       setDataRes(Result);
       let correctAns = 0;
       for(let i = 0; i < Result.length; i++) {
@@ -34,9 +31,7 @@ const Result = () => {
       setCorrectAns(correctAns);
     };
     fetchApi();
-  },[])
-  console.log(prams.id);
-  console.log(dataAns);
+  },[]);
   return (
     <>
       <div className="container--Result">

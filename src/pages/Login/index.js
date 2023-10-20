@@ -23,7 +23,6 @@ const Login = () => {
       setCookie("token", reponse[0].token, 1);
       dispath(checkLogin(true));
       navigate(tabAction);
-      console.log(reponse[0].fullname);
     } else {
       alert("email sai hoặc mật khẩu sai!");
     }

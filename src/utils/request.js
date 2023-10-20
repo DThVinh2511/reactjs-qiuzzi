@@ -1,18 +1,14 @@
-const API_DOMAIN = "http://localhost:8080/v1/api/";
+const API_DOMAIN = "https://mongodbsdsad.vercel.app/v1/api/";
 // "http://localhost:3002/"
 
 export const get = async (path) => {
-  const response = await fetch(API_DOMAIN + path, {
-    // mode: 'no-cors',
-  });
+  const response = await fetch(API_DOMAIN + path, {});
   const result = await response.json();
-  console.log(API_DOMAIN + path, result);
   return result.data;
 };
 
 export const post = async (path, options) => {
   const response = await fetch(API_DOMAIN + path, {
-    // mode: 'no-cors',
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -26,17 +22,14 @@ export const post = async (path, options) => {
 
 export const del = async (path) => {
   const response = await fetch(`${API_DOMAIN}${path}`, {
-    // mode: 'no-cors',
     method: "DELETE",
   })
   const result = await response.json();
-  console.log(API_DOMAIN + path, result);
   return result.data;
 };
 
 export const patch = async (path, options) => {
   const response = await fetch(API_DOMAIN + path, {
-    // mode: 'no-cors',
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -45,6 +38,5 @@ export const patch = async (path, options) => {
     body: JSON.stringify(options)
   });
   const result = await response.json();
-  console.log(API_DOMAIN + path, result);
   return result.data;
 };

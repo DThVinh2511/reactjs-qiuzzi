@@ -26,9 +26,7 @@ const Qiuz = () => {
       setQuestion(question);
     }
     fetchApi();
-  }, [])
-
-  console.log(question);
+  }, []);
   const hanldeSubmit =  async (e) => {
     e.preventDefault();
     let count = 0;
@@ -43,24 +41,19 @@ const Qiuz = () => {
           answer: value
         })
       }
-    }
-    console.log(count);
+    };
     if(count === question.length) {
       let option = {
         type: "EMPTY_AWNSER",
         userId: getCookie("id"),
         topicId: params.id,
       }
-      console.log('>>> check option1: ', option);
       const respone = await postAnwsers(option);
       let option2 = {
         awnserId: respone._id,
         awnserArr: selectedAns,
       }
       const respone2 = await putAnwsers(option2);
-      console.log('>>> check option2 : ', option2);
-      console.log('>>> check respone1 : ', respone);
-      console.log('>> check respone2 : ', respone2);
       if(respone && respone2) {
         Swal.fire({
           icon: 'success',
