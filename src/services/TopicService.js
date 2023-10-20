@@ -1,4 +1,6 @@
-import { get } from "../utils/request"
+import {
+  get
+} from "../utils/request"
 
 export const getListTopic = async () => {
   const result = await get('topics');
@@ -6,11 +8,11 @@ export const getListTopic = async () => {
 }
 
 export const getQuestion = async (id) => {
-  const result = await get(`questions?topicId=${id}`);
+  const result = await get(`questions?limit=100&page=1&topicId=${id}`);
   return result;
 }
 
 export const getTopic = async (id) => {
-  const result = await get(`topics/${id}`);
+  const result = await get(`topics?limit=100&page=1&_id=${id}`);
   return result;
 }

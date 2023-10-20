@@ -113,7 +113,7 @@ function LayoutDefault() {
                               <FaTwitter />
                             </span>
                           </li>
-                          <li><NavLink to="/logout" className="link infor-users__logout">Đăng xuất</NavLink></li>
+                          <li><NavLink to="/logout" className="link infor-users__logout" onClick={showInfor}>Đăng xuất</NavLink></li>
                         </ul>
                       </div>
                     </>

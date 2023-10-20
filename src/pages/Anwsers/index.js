@@ -14,7 +14,7 @@ const Anwsers = () => {
       ];
       for(let i = 0; i < anwsers.length; i++) {
         data.push({
-          ...topics.find(item => item.id === anwsers[i].topicId),
+          ...topics.find(item => item._id === anwsers[i].topicId),
           ...anwsers[i]
         })
       }
@@ -36,11 +36,11 @@ const Anwsers = () => {
           </thead>
           <tbody>
             {anwser.map(item => (
-              <tr key={item.id}>
-                <td className="table_id">{item.id}</td>
+              <tr key={item._id}>
+                <td className="table_id">{item._id}</td>
                 <td className="table_name">{item.name}</td>
                 <td className="table_link">
-                  <Link to={"/result/"+ item.id}>
+                  <Link to={"/result/"+ item._id}>
                     <button className="table_link-button">Xem chi tiết</button>
                   </Link>
                   <Link to={"/qiuz/"+ item.topicId}>

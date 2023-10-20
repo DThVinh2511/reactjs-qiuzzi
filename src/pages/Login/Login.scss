@@ -6,24 +6,25 @@
   min-height: 600px;
   margin: 0 auto;
 }
+
 .form-login {
   border-radius: 20px;
   background: rgb(227, 192, 127);
   text-align: center;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   width: 320px;
-	padding: 30px;
+  padding: 30px;
   &__field {
-    padding: 20px 0px;	
-	  position: relative;
+    padding: 20px 0px;
+    position: relative;
   }
   &__title {
     color: rgb(34, 93, 34);
   }
   &__icon {
     position: absolute;
-	  top: 30px;
-	  color: rgb(34, 93, 34);
+    top: 30px;
+    color: rgb(34, 93, 34);
   }
   &__input {
     color: #000;
@@ -34,10 +35,12 @@
     padding-left: 24px;
     font-weight: 700;
     width: 75%;
-    transition: .2s;
-    &:active, &:focus,&:hover {
+    transition: 0.2s;
+    &:active,
+    &:focus,
+    &:hover {
       outline: none;
-	    border-bottom-color: rgb(34, 93, 34);
+      border-bottom-color: rgb(34, 93, 34);
     }
   }
   &__button {

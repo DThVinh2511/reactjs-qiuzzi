@@ -12,20 +12,22 @@ const Result = () => {
   useEffect(() => {
     const fetchApi = async () => {
       const dataAns = await getAnwsers(prams.id);
-      const dataQuestion = await getQuestion(dataAns.topicId);
-      setDataAns(dataAns);
-
+      const dataQuestion = await getQuestion(dataAns[0].topicId);
+      setDataAns(dataAns[0]);
+      console.log("check data Question",dataQuestion);
+      console.log("check dataAns", dataAns);
       let Result = [];
       for(let i = 0; i < dataQuestion.length; i++) {
         Result.push({
           ...dataQuestion[i],
-          ...dataAns.anwsers.find(item => item.questionId === dataQuestion[i].id)
+          ...dataAns[0].answers.find(item => item.questionId === dataQuestion[i]._id)
         })
       }
+      console.log(Result);
       setDataRes(Result);
       let correctAns = 0;
       for(let i = 0; i < Result.length; i++) {
-        if(Result[i].anwser === Result[i].correctAnwser) {
+        if(parseInt(Result[i].answer) === Result[i].correctAnswer) {
           correctAns++;
         }
       }
@@ -34,6 +36,7 @@ const Result = () => {
     fetchApi();
   },[])
   console.log(prams.id);
+  console.log(dataAns);
   return (
     <>
       <div className="container--Result">
@@ -45,23 +48,23 @@ const Result = () => {
           </h2>
           <div className="Result-list">
             {dataRes.map((item,index) => (
-              <div className="Result__item" key={item.id}>
+              <div className="Result__item" key={item._id}>
                 <p className="Result__item--question"><strong>Câu {index + 1}</strong>: {item.question}
-                  {item.correctAnwser === item.anwser ? (
+                  {item.correctAnswer === parseInt(item.answer) ? (
                     <strong className="Result__item--tag Result__item--tag-true">Correct</strong>
                   ): (
                     <strong className="Result__item--tag Result__item--tag-false">Wrong</strong>
                   )}
                 </p>
-                {item.anwsers.map((itemAns, indexAns) => {
+                {item.answers.map((itemAns, indexAns) => {
                   let checked = false;
                   let corect = false;
                   let classname = "";
-                  if(item.anwser === indexAns) {
+                  if(parseInt(item.answer) === indexAns) {
                     checked = true;
                     classname = "Result__item--selected";
                   }
-                  if(item.correctAnwser === indexAns){
+                  if(item.correctAnswer === indexAns){
                     classname += " Result__item--correct";
                     corect = true;
                   }

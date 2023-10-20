@@ -26,10 +26,10 @@ const Topic = () => {
           <tbody>
             {topics.map(item => (
               <tr key={item.id}>
-                <td className="table_id">{item.id}</td>
+                <td className="table_id">{item._id}</td>
                 <td className="table_name">{item.name}</td>
                 <td className="table_link">
-                  <Link to={"/qiuz/"+ item.id}>
+                  <Link to={"/qiuz/"+ item._id}>
                     <button className="table_link-button">Làm bài</button>
                   </Link>
                 </td>

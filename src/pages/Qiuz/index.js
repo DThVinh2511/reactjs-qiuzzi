@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Await, useNavigate, useParams } from "react-router-dom";
 import { getQuestion, getTopic } from "../../services/TopicService";
 import { getCookie } from "../../helpers/Cookie";
-import { postAnwsers } from "../../services/AnwserService";
+import { postAnwsers, putAnwsers } from "../../services/AnwserService";
 import "./Qiuz.scss";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
@@ -39,27 +39,36 @@ const Qiuz = () => {
         const name = e.target.elements[i].name;
         const value = e.target.elements[i].value;
         selectedAns.push({
-          questionId: parseInt(name),
-          anwser: parseInt(value)
+          questionId: name,
+          answer: value
         })
       }
     }
     console.log(count);
     if(count === question.length) {
       let option = {
-        userId: parseInt(getCookie("id")),
-        topicId: parseInt(params.id),
-        anwsers: selectedAns
+        type: "EMPTY_AWNSER",
+        userId: getCookie("id"),
+        topicId: params.id,
       }
+      console.log('>>> check option1: ', option);
       const respone = await postAnwsers(option);
-      if(respone) {
+      let option2 = {
+        awnserId: respone._id,
+        awnserArr: selectedAns,
+      }
+      const respone2 = await putAnwsers(option2);
+      console.log('>>> check option2 : ', option2);
+      console.log('>>> check respone1 : ', respone);
+      console.log('>> check respone2 : ', respone2);
+      if(respone && respone2) {
         Swal.fire({
           icon: 'success',
           title: 'Nộp bài thành công',
           showConfirmButton: false,
           timer: 1500
         })
-        navigate(`/result/${respone.id}`);
+        navigate(`/result/${respone._id}`);
       }
       else {
         Swal.fire({
@@ -87,12 +96,12 @@ const Qiuz = () => {
           <div className="form-quiz">
             <form onSubmit={hanldeSubmit}>
               {question.map((item, index) => (
-                <div className="form-qiuz__item" key={item.id}>
+                <div className="form-qiuz__item" key={item._id}>
                   <p><strong>Câu {index + 1}</strong>: {item.question}</p>
-                  {item.anwsers.map((itemAns, indexAns) => (
-                    <label className="form-quiz__anwser container" key={indexAns} htmlFor={`quiz-${item.id}-${indexAns}`}>
+                  {item.answers.map((itemAns, indexAns) => (
+                    <label className="form-quiz__anwser container" key={indexAns} htmlFor={`quiz-${item._id}-${indexAns}`}>
                       {itemAns}
-                      <input type="radio" name={item.id} value={indexAns} id={`quiz-${item.id}-${indexAns}`}/>
+                      <input type="radio" name={item._id} value={indexAns} id={`quiz-${item._id}-${indexAns}`}/>
                       <span className="form-quiz__anwser--checkmark"></span>
                     </label>
                   ))}
