@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Await, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getQuestion, getTopic } from "../../services/TopicService";
 import { getCookie } from "../../helpers/Cookie";
 import { postAnwsers, putAnwsers } from "../../services/AnwserService";
@@ -12,6 +12,7 @@ const Qiuz = () => {
   const navigate = useNavigate();
   const [ question, setQuestion ] = useState([]);
   const [ datatopic, setDatatopic ] = useState([]);
+  const [ loading, setLoading ] = useState(false);
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -29,6 +30,7 @@ const Qiuz = () => {
   }, []);
   const hanldeSubmit =  async (e) => {
     e.preventDefault();
+    setLoading(true);
     let count = 0;
     let selectedAns = [];
     for(let i = 0; i < e.target.elements.length; i++) {
@@ -55,21 +57,23 @@ const Qiuz = () => {
       }
       const respone2 = await putAnwsers(option2);
       if(respone && respone2) {
-        Swal.fire({
+        await Swal.fire({
           icon: 'success',
           title: 'Nộp bài thành công',
           showConfirmButton: false,
           timer: 1500
-        })
+        });
+        setLoading(false);
         navigate(`/result/${respone._id}`);
       }
       else {
-        Swal.fire({
+        await Swal.fire({
           icon: 'warning',
           title: 'Nộp bài thất bại!',
           showConfirmButton: false,
           timer: 1500
-        })
+        });
+        setLoading(false);
       }
     }
     else {
@@ -100,7 +104,7 @@ const Qiuz = () => {
                   ))}
                 </div>
               ))}
-              <button type="submit" className="button-37">Nộp bài</button>
+              <button type="submit" className={"button-37 " + (loading ? ("classic-2") : (""))}>Nộp bài</button>
             </form>
           </div>
         </div>

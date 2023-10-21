@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { checkTab } from "../actions/tab";
 import { HiOutlineUserCircle } from "react-icons/hi";
-import { FaFacebookF, FaInstagram, FaTwitter, FaPhone, FaAlignJustify } from "react-icons/fa6"
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa6"
 
 function LayoutDefault() {
   const token = getCookie("token");

@@ -52,3 +52,12 @@
     }
   }
 }
+.classic-2 {
+  border: none;
+  font-weight: bold;
+  font-family: sans-serif;
+  padding-bottom: 8px;
+  background:linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+  animation:c2 2s linear infinite;
+}
+@keyframes c2 {to{background-size: 100% 3px}}
